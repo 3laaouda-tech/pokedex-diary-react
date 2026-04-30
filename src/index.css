@@ -1,1 +1,120 @@
 @import "tailwindcss";
+
+body {
+    background-color: rgb(26, 26, 46);
+    font-family: Nunito, sans-serif;
+    color: rgb(224, 224, 240);
+    background-image: radial-gradient(ellipse at 20% 50%, rgba(233, 69, 96, 0.05) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(15, 52, 96, 0.3) 0%, transparent 50%);
+}
+
+main.main {
+    @apply max-w-7xl mx-auto px-6 py-10 relative;
+}
+
+.title {
+    @apply mb-8 relative z-10;
+}
+
+.title .title-text {
+    margin-bottom: 0.25rem;
+    font-family: Oxanium, sans-serif;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 800;
+    color: rgb(224, 224, 240);
+}
+
+.title .title-extra {
+    @apply mt-3 w-16 h-1 rounded-full;
+    display: inline-block;
+    background-color: rgb(233, 69, 96);
+}
+
+.pokemons-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.pokemon-card {
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 1rem;
+    background-color: rgb(15, 52, 96);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(233, 69, 96, 0.1);
+
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}
+.pokemon-card:hover {
+    transform: translateY(-4px);
+    background-color: rgb(26, 74, 122);
+    box-shadow: 0 8px 30px rgba(233, 69, 96, 0.25), 0 0 0 1px rgba(233, 69, 96, 0.3);
+}
+
+.pokemon-card-img {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 160px;
+    background: linear-gradient(135deg, rgba(15, 52, 96, 0.8) 0%, rgba(26, 26, 46, 0.9) 100%);
+}
+
+.pokemon-card-body {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.pokemon-card-number {
+    margin-bottom: 0.125rem;
+    font-family: Oxanium, sans-serif;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: rgb(233, 69, 96);
+}
+
+.pokemon-card-name {
+    margin-bottom: 0.5rem;
+    font-family: Oxanium, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: rgb(224, 224, 240);
+}
+
+.pokemon-card-type {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+}
+
+.type-badge {
+    border-radius: 9999px;
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+    padding-top: 0.125rem;
+    padding-bottom: 0.125rem;
+    font-family: Oxanium, sans-serif;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.type-badge-grass {
+    background-color: rgb(76, 175, 80);
+}
+
+.type-badge-poison {
+    background-color: rgb(156, 39, 176);
+}
