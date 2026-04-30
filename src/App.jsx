@@ -3,11 +3,18 @@ import './App.css'
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
-  useEffect(() => {
+    useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon?limit=20")
       .then((res) => res.json())
-      .then((data) => {
-        setPokemons(data.results);
+      .then(async (data) => {
+        const detailedPokemons = await Promise.all(
+          data.results.map(async (pokemon) => {
+            const res = await fetch(pokemon.url);
+            return res.json();
+          })
+        );
+
+        setPokemons(detailedPokemons);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -21,61 +28,28 @@ function App() {
 
       <div class="pokemons-grid">
 
-        <div class="pokemon-card">
-          <div class="pokemon-card-img">
-            🌱
-          </div>
-          <div class="pokemon-card-body">
-            <div class="pokemon-card-number">#0001</div>
-            <div class="pokemon-card-name">Bulbasaur</div>
-            <div class="pokemon-card-types">
-              <span class="type-badge type-badge-grass">grass</span>
-              <span class="type-badge type-badge-poison">poison</span>
-            </div>
-          </div>
-        </div>
 
-        <div class="pokemon-card">
-          <div class="pokemon-card-img">
-            🌱
-          </div>
-          <div class="pokemon-card-body">
-            <div class="pokemon-card-number">#0001</div>
-            <div class="pokemon-card-name">Bulbasaur</div>
-            <div class="pokemon-card-types">
-              <span class="type-badge type-badge-grass">grass</span>
-              <span class="type-badge type-badge-poison">poison</span>
+        {pokemons.map((pokemon, index) => (
+          console.log(pokemon),
+          <div class="pokemon-card" key={index} onClick={() => (window.location.href = `/pokedex.html?id=${pokemon.id}`)}>
+            <div class="pokemon-card-img">
+              <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+            </div>
+            <div class="pokemon-card-body">
+              <div class="pokemon-card-number">#{pokemon.id}</div>
+              <div class="pokemon-card-name">{pokemon.name}</div>
+              <div class="pokemon-card-types">
+                {pokemon.types.map((typeInfo) => (
+                  <span class={`type-badge type-badge-${typeInfo.type.name}`} key={typeInfo.type.name}>
+                    {typeInfo.type.name}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        ))}
 
-        <div class="pokemon-card">
-          <div class="pokemon-card-img">
-            🌱
-          </div>
-          <div class="pokemon-card-body">
-            <div class="pokemon-card-number">#0001</div>
-            <div class="pokemon-card-name">Bulbasaur</div>
-            <div class="pokemon-card-types">
-              <span class="type-badge type-badge-grass">grass</span>
-              <span class="type-badge type-badge-poison">poison</span>
-            </div>
-          </div>
-        </div>
 
-        <div class="pokemon-card">
-          <div class="pokemon-card-img">
-            🌱
-          </div>
-          <div class="pokemon-card-body">
-            <div class="pokemon-card-number">#0001</div>
-            <div class="pokemon-card-name">Bulbasaur</div>
-            <div class="pokemon-card-types">
-              <span class="type-badge type-badge-grass">grass</span>
-              <span class="type-badge type-badge-poison">poison</span>
-            </div>
-          </div>
-        </div>
 
 
       </div>

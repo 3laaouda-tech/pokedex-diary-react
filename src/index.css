@@ -118,3 +118,19 @@ main.main {
 .type-badge-poison {
     background-color: rgb(156, 39, 176);
 }
+
+.type-badge-fire {
+    background-color: rgb(244, 67, 54);
+}
+.type-badge-water {
+    background-color: rgb(33, 150, 243);
+}
+.type-badge-bug {
+    background-color: rgb(139, 195, 74);
+}
+.type-badge-normal {
+    background-color: rgb(158, 158, 158);
+}
+.type-badge-flying {
+    background-color: rgb(3, 169, 244);
+}
