@@ -14,7 +14,7 @@ export default function Footer() {
 
           <div className='footer-col'>
             <h2 className='col-title'>Pokédex</h2>
-            <p className="text-dex-muted text-sm leading-relaxed mb-5 max-w-xs">
+            <p className="footer-desc">
               Your complete guide to all Pokémon species — stats, evolutions,
               type matchups, and more. Gotta catch 'em all!
             </p>

@@ -6,6 +6,7 @@ export default function PokemonCard({ index, pokemon }) {
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("caughtPokemons")) || [];
+    console.log(stored);
     setFavorites(stored);
   }, []);
 

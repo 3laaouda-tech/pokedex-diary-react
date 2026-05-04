@@ -38,11 +38,12 @@ function Favorites() {
   return (
     <div className='page page-favorites'>
       <Header />
+      <Search search={search} setSearch={setSearch} />
       <main>
         <div className='main-wrapper container'>
           <section className='section-pokemons'>
             <Title title="Pokedex" />
-            <Search search={search} setSearch={setSearch} />
+            
             {pokemons.length === 0 ? (
               <h1 className="text-center mt-10 text-xl">
                 No favorites yet ⭐

@@ -76,6 +76,15 @@ main {
 .type-badge-flying {
   @apply bg-[rgb(3,169,244)];
 }
+.type-badge-ground {
+  @apply bg-[rgb(121,85,72)];
+}
+.type-badge-electric {
+  @apply bg-[rgb(233,30,99)];
+}
+.type-badge-fairy {
+  @apply bg-[rgb(255,105,180)];
+}
 .pokemon-detail-banner {
   @apply bg-[rgb(22,33,62)] bg-[linear-gradient(135deg,rgba(233,69,96,0.06)_0%,transparent_60%)] py-5 border-b border-[rgb(42,42,74)];
 }
@@ -160,8 +169,6 @@ header.header {
   font-family: Oxanium, sans-serif;
 }
 
-
-
 .footer .footer-wrapper {
   @apply mx-auto px-6 py-6;
 
@@ -183,6 +190,7 @@ header.header {
   @apply border-t pt-6 mt-6 flex items-center justify-between flex-wrap gap-4;
 }
 
+.footer-desc,
 .footer-copy {
   @apply text-xs text-[rgb(136,136,170)];
 }
