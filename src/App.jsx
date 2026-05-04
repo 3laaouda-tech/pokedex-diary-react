@@ -32,11 +32,12 @@ function App() {
   return (
     <div className='page page-index'>
       <Header />
+      <Search search={search} setSearch={setSearch} />
       <main>
         <div className='main-wrapper container'>
           <section className='section-pokemons'>
             <Title title="Pokedex" />
-            <Search search={search} setSearch={setSearch} />
+          
             <div className='pokemons-grid'>
               {filteredPokemons.map((pokemon, index) => (
                 <PokemonCard key={index} pokemon={pokemon} />
