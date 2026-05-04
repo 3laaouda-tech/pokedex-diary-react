@@ -1,26 +1,22 @@
 import { useEffect, useState } from 'react'
 import { saveNote, getNoteById } from "../utils/notes";
+import { toggleFavorite, isFavorite } from "../utils/favorites";
 
 export default function PokemonCard({ index, pokemon }) {
 
-  const [favorites, setFavorites] = useState([]);
-  const [note, setNote] = useState();
+  const id = pokemon.id;
+  const [favorite, setFavorite] = useState(isFavorite(id));
+
+  const [note, setNote] = useState(getNoteById(id));
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("caughtPokemons")) || [];
-    setFavorites(stored);
+    const stored = JSON.parse(localStorage.getItem("favorite_pokemons")) || [];
   }, []);
 
-  const toggleFavorite = (id) => {
-    let updated;
-    if (favorites.includes(id)) {
-      updated = favorites.filter((fav) => fav !== id);
-    } else {
-      updated = [...favorites, id];
-    }
-    setFavorites(updated);
-    localStorage.setItem("caughtPokemons", JSON.stringify(updated));
-  };
+  function handleFav() {
+    const updated = toggleFavorite(id);
+    setFavorite(updated.includes(id));
+  }
 
 
   function handleSave(id) {
@@ -34,15 +30,11 @@ export default function PokemonCard({ index, pokemon }) {
 
 
         <button
-          onClick={(e) => {
-            e.stopPropagation();
-            toggleFavorite(pokemon.id);
-          }}
-          className='absolute top-2 right-2 text-xl'
+          onClick={handleFav}
+          className="absolute top-2 right-2 text-xl"
         >
-          {favorites.includes(pokemon.id) ? "⭐" : "☆"}
+          {favorite ? "⭐" : "☆"}
         </button>
-
 
         <img src={pokemon.sprites.front_default} alt={pokemon.name} />
       </div>
@@ -61,14 +53,14 @@ export default function PokemonCard({ index, pokemon }) {
           <div className='action'>
             <button className='bg-blue-600 hover:bg-blue-500 text-white py-1 px-2 rounded mr-2' onClick={() => (window.location.href = `/details.html?id=${pokemon.id}`)}>
               View Details
-            </button> 
+            </button>
           </div>
           <textarea
             value={note}
             onChange={(e) => setNote(e.target.value)}
             placeholder="Add note..."
             className="w-full mt-2 p-2 text-sm rounded bg-[#1a1a2e] text-white"
-          >{getNoteById(pokemon.id)}</textarea>
+          ></textarea>
 
           <button
             onClick={() => handleSave(pokemon.id)}

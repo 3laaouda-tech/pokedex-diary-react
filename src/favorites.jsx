@@ -7,21 +7,22 @@ import Footer from './components/Footer'
 import PokemonCard from './components/PokemonCard'
 import Title from './components/Title'
 import Search from './components/Search'
+import { getFavorites } from "./utils/favorites";
 import './index.css'
 
 function Favorites() {
   const [pokemons, setPokemons] = useState([]);
   const [search, setSearch] = useState("");
-  const [favorites, setFavorites] = useState([]);
+
 
   useEffect(() => {
-    const stored =
-      JSON.parse(localStorage.getItem("caughtPokemons")) || [];
 
-    if (stored.length === 0) return;
+    const favorites = getFavorites();
+
+    if (favorites.length === 0) return;
 
     Promise.all(
-      stored.map((id) =>
+      favorites.map((id) =>
         fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) =>
           res.json()
         )
@@ -43,7 +44,7 @@ function Favorites() {
         <div className='main-wrapper container'>
           <section className='section-pokemons'>
             <Title title="Pokedex" />
-            
+
             {pokemons.length === 0 ? (
               <h1 className="text-center mt-10 text-xl">
                 No favorites yet ⭐
