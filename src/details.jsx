@@ -4,6 +4,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import { getNoteById } from "./utils/notes";
 import './index.css'
 
 function Details() {
@@ -11,6 +12,8 @@ function Details() {
 
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
+
+  const note = getNoteById(id);
 
   useEffect(() => {
     if (!id) return;
@@ -50,6 +53,13 @@ function Details() {
 
             </div>
             <div className='pokemon-details-column'>
+
+              {note && (
+                <div className='detail-card'>
+                  <h2>Note</h2>
+                  <p>{note}</p>
+                </div>
+              )}
 
               <div className='detail-infobox'>
                 <div className="infobox-grid">
