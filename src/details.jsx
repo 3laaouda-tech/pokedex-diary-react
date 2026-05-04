@@ -25,7 +25,6 @@ function Details() {
     return <h1 className="text-center mt-10 text-xl">Loading...</h1>;
   }
   return (
-    console.log(pokemon),
     <div className='page page-pokemon-details'>
       <Header />
       <div className='pokemon-detail-banner'>
@@ -35,15 +34,11 @@ function Details() {
         </div>
       </div>
 
-
-
       <main>
         <div className='main-wrapper container'>
           <section className='section-pokemon-details'>
 
-
             <div className='pokemon-details-column'>
-
 
               <div className='detail-card'>
                 <img
@@ -53,30 +48,21 @@ function Details() {
                 />
               </div>
 
-
-
-
             </div>
             <div className='pokemon-details-column'>
 
-
               <div className='detail-infobox'>
                 <div className="infobox-grid">
-
                   <div className="infobox-cell">
                     <h3>Height</h3>
                     <p>{pokemon.height / 10} m</p>
                   </div>
-
                   <div className="infobox-cell">
                     <h3>Weight</h3>
                     <p>{pokemon.weight / 10} kg</p>
                   </div>
-
-
                 </div>
               </div>
-
 
               <div className='detail-card'>
                 <h2>Types</h2>
@@ -100,22 +86,17 @@ function Details() {
                       </div>
                     </div>
                   ))}
-
                 </div>
               </div>
 
             </div>
           </section>
 
-
         </div>
       </main>
       <Footer />
     </div>
   );
-
-
-
 }
 
 createRoot(document.getElementById('root')).render(
